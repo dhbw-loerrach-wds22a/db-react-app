@@ -91,7 +91,8 @@ const BusinessTable = (props) => {
             <div style={{
                 backgroundColor: '#ffffff',
                 maxWidth: 'calc(100% - 20px)',
-                margin: '200px',
+                marginLeft: '10%',
+                marginRight: '10%',
                 marginBottom: '0px',
                 marginTop: '0px'
             }}>
@@ -113,7 +114,7 @@ const BusinessTable = (props) => {
                         label="Filter by Address"
                         value={addressFilter}
                         onChange={handleAddressFilterChange}
-                        style={{maxWidth: 'calc(100% - 200px)', margin: '10px'}}
+                        style={{maxWidth: 'calc(100% - 10%)', margin: '10px'}}
                     />
                     <Select
                         style={{maxWidth: '190px', margin: '10px'}}
@@ -132,7 +133,7 @@ const BusinessTable = (props) => {
 
             <div style={{display: 'flex', justifyContent: 'center'}}>
                 <TableContainer component={Paper}
-                                style={{maxWidth: 'calc(100% - 20px)', margin: '200px', marginTop: '0px'}}>
+                                style={{maxWidth: 'calc(100% - 20px)', marginLeft: '10%', marginRight: '10%', marginTop: '0px'}}>
 
 
                     <Table aria-label="simple table">

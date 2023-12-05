@@ -59,9 +59,10 @@ const ReviewsTable = ({businessId}) => {
             <div style={{backgroundColor: '#f5f5f5', width: '100%', display:"grid",  gridTemplateColumns:"1fr 1fr"}}>
                 <div style={{
                     backgroundColor: '#ffffff',
-                    maxWidth: 'calc(100% - 320px)',
+                    maxWidth: 'calc(100% - 10% - 120px)',
                     margin: '20px',
-                    marginLeft: '200px',
+                    marginLeft: '10%',
+                    marginRight: '30px',
                     paddingTop: '60px',
                     paddingBottom: '60px',
                     paddingLeft: '60px',
@@ -109,9 +110,10 @@ const ReviewsTable = ({businessId}) => {
                 </div>
                 <div style={{
                     backgroundColor: '#ffffff',
-                    maxWidth: 'calc(100% - 320px)',
+                    maxWidth: 'calc(100% - 10% - 120)',
                     margin: '20px',
-                    marginLeft: '0px',
+                    marginLeft: '30px',
+                    marginRight: '10%',
                     paddingTop: '60px',
                     paddingBottom: '60px',
                     paddingLeft: '60px',
@@ -125,7 +127,7 @@ const ReviewsTable = ({businessId}) => {
                             <CircularProgress />
                         </Box>
                     ) : (
-                    <div>
+                    <div style={{ maxWidth: 'calc(100% - 10% - 120)', padding: '0px'}}>
                         <StarRatingBarChart reviews={reviews} />
                     </div>
                     )}
@@ -140,7 +142,7 @@ const ReviewsTable = ({businessId}) => {
                     </Box>
                 ) : (
                 <TableContainer component={Paper}
-                                style={{maxWidth: 'calc(100% - 20px)', margin: '200px', marginTop: '50px'}}>
+                                style={{maxWidth: 'calc(100% - 20px)', margin: '5%', marginTop: '50px'}}>
                     <Table aria-label="reviews table">
                         <TableHead>
                             <TableRow>

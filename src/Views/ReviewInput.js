@@ -60,9 +60,9 @@ function ReviewInput() {
             <div style={{backgroundColor: '#f5f5f5', minHeight: '50px'}}></div>
             <div style={{
                 backgroundColor: '#ffffff',
-                maxWidth: 'calc(100% - 1200px)',
+                maxWidth: 'calc(100% - 62%)',
                 margin: '20px',
-                marginLeft: '600px',
+                marginLeft: '31%',
                 paddingTop: '60px',
                 paddingBottom: '60px',
                 marginBottom: '0px',
