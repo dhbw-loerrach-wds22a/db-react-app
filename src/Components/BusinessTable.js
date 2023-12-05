@@ -49,7 +49,7 @@ const BusinessTable = (props) => {
                 setRows([]);
                 return; // Exit the function early
             }
-            const response = await fetch(`http://api/business/${name}`);
+            const response = await fetch(`http://localhost:8081/business/${name}`);
             const data = await response.json();
             setRows(data); // assuming the API returns an array of arrays
             console.log("Updated Rows: ", rows);

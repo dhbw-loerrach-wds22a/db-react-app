@@ -23,7 +23,7 @@ const ReviewsTable = ({businessId}) => {
         const fetchReviews = async () => {
             try {
                 setLoading(true);
-                const response = await fetch(`http://api/reviews/${businessId}`);
+                const response = await fetch(`http://localhost:8081/reviews/${businessId}`);
                 const data = await response.json();
                 setReviews(data);
                 setAvgStars(Math.round(data.reduce((acc, review) => acc + review.stars, 0) / data.length));
@@ -37,7 +37,7 @@ const ReviewsTable = ({businessId}) => {
 
         const fetchMetaData = async () => {
             try {
-                const response = await fetch(`http://api/business_id/${businessId}`);
+                const response = await fetch(`http://localhost:8081/business_id/${businessId}`);
                 const data = await response.json();
                 setMetadata(data); // Assuming the API returns an array of review objects
             } catch (error) {
@@ -79,6 +79,9 @@ const ReviewsTable = ({businessId}) => {
                             {metaData[1]}
                         </Typography>
                         <Typography variant="h7" style={{flexGrow: 1, display: "flex", justifyContent: "left"}}>
+                            id: {metaData[0]}
+                        </Typography>
+                        <Typography variant="h7" style={{flexGrow: 1, display: "flex", justifyContent: "left"}}>
                             Street: {metaData[2]}
                         </Typography>
                         <Typography variant="h7" style={{flexGrow: 1, display: "flex", justifyContent: "left"}}>
@@ -91,7 +94,7 @@ const ReviewsTable = ({businessId}) => {
                             Zip: {metaData[5]}
                         </Typography>
                         <Typography variant="h7" style={{flexGrow: 1, display: "flex", justifyContent: "left", alignItems: "center"}}>
-                            Rating:<Rating
+                            Rating ({reviews.length}):<Rating
                             name="simple-controlled"
                             value={avgStars}
                             max={5}

@@ -33,7 +33,7 @@ function ReviewInput() {
         };
 
         try {
-            const response = await fetch('http://api/review/add', {
+            const response = await fetch('http://localhost:8081/review/add', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
