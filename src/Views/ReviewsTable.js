@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from 'react';
-import {apiHost} from "../apiConfig";
 import {
     Table,
     TableBody,
@@ -13,6 +12,7 @@ import {
     TextField, Rating, Button, CircularProgress
 } from '@mui/material';
 import StarRatingBarChart from "../Components/StarRatingBarChart";
+import {apiHost} from "../apiConfig";
 
 const ReviewsTable = ({businessId}) => {
     const [reviews, setReviews] = useState([]);
@@ -24,7 +24,7 @@ const ReviewsTable = ({businessId}) => {
         const fetchReviews = async () => {
             try {
                 setLoading(true);
-                const response = await fetch(`${apiHost}/reviews/${businessId}`);
+                const response = await fetch(`http://${apiHost}/reviews/${businessId}`);
                 const data = await response.json();
                 setReviews(data);
                 setAvgStars(Math.round(data.reduce((acc, review) => acc + review.stars, 0) / data.length));
@@ -38,7 +38,7 @@ const ReviewsTable = ({businessId}) => {
 
         const fetchMetaData = async () => {
             try {
-                const response = await fetch(`${apiHost}/business_id/${businessId}`);
+                const response = await fetch(`http://${apiHost}/business_id/${businessId}`);
                 const data = await response.json();
                 setMetadata(data); // Assuming the API returns an array of review objects
             } catch (error) {
