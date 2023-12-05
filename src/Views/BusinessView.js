@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import BusinessTable from "../Components/BusinessTable";
-import ReviewsTable from "../Components/ReviewsTable"; // Make sure to import ReviewsTable
+import ReviewsTable from "./ReviewsTable"; // Make sure to import ReviewsTable
 
 function BusinessView() {
     const [showReviews, setShowReviews] = useState(false);

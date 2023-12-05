@@ -1,7 +1,7 @@
 import React, {useState} from 'react'; // Import useState here
 import BusinessTable from './Components/BusinessTable';
 import {AppBar, Button, Toolbar, Typography} from "@mui/material";
-import ReviewInput from "./Components/ReviewInput";
+import ReviewInput from "./Views/ReviewInput";
 import BusinessView from "./Views/BusinessView"; // Adjust the path as needed
 
 function App() {

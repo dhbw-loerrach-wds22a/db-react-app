@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import {apiHost} from "../apiConfig";
 import {
     Table,
     TableBody,
@@ -12,7 +13,6 @@ import {
 } from '@mui/material';
 
 function ReviewInput() {
-
     const [businessId, setBusinessId] = useState('');
     const [stars, setStars] = useState(0);
     const [reviewText, setReviewText] = useState('');
@@ -33,7 +33,7 @@ function ReviewInput() {
         };
 
         try {
-            const response = await fetch('http://localhost:8081/review/add', {
+            const response = await fetch('${apiHost}/review/add', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

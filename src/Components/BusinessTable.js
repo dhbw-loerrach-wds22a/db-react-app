@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import {apiHost} from "../apiConfig";
 import {
     Table,
     TableBody,
@@ -49,7 +50,7 @@ const BusinessTable = (props) => {
                 setRows([]);
                 return; // Exit the function early
             }
-            const response = await fetch(`http://localhost:8081/business/${name}`);
+            const response = await fetch(`http://${apiHost}/business/${name}`);
             const data = await response.json();
             setRows(data); // assuming the API returns an array of arrays
             console.log("Updated Rows: ", rows);
