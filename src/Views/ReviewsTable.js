@@ -24,7 +24,7 @@ const ReviewsTable = ({businessId}) => {
         const fetchReviews = async () => {
             try {
                 setLoading(true);
-                const response = await fetch(`http://${apiHost}/reviews/${businessId}`);
+                const response = await fetch(`${apiHost}/reviews/${businessId}`);
                 const data = await response.json();
                 setReviews(data);
                 setAvgStars(Math.round(data.reduce((acc, review) => acc + review.stars, 0) / data.length));
@@ -38,7 +38,7 @@ const ReviewsTable = ({businessId}) => {
 
         const fetchMetaData = async () => {
             try {
-                const response = await fetch(`http://${apiHost}/business_id/${businessId}`);
+                const response = await fetch(`${apiHost}/business_id/${businessId}`);
                 const data = await response.json();
                 setMetadata(data); // Assuming the API returns an array of review objects
             } catch (error) {

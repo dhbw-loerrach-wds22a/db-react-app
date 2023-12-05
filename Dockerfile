@@ -1,6 +1,9 @@
 # Stage 1: Building the React application
 FROM node:16.14.0 as build-stage
 
+# Add ARG for environment variable
+ARG REACT_APP_API_HOST
+
 WORKDIR /app
 
 COPY package.json yarn.lock ./
@@ -9,6 +12,10 @@ COPY package.json yarn.lock ./
 RUN yarn install
 
 COPY . .
+
+# Use ARG value as environment variable
+ENV REACT_APP_API_HOST=${REACT_APP_API_HOST}
+ENV NODE_ENV=production
 
 # Build the app
 RUN yarn build
