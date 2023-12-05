@@ -9,7 +9,7 @@ import {
     Paper,
     Box,
     Typography,
-    TextField, Rating, Button
+    TextField, Rating, Button, CircularProgress
 } from '@mui/material';
 import StarRatingBarChart from "./StarRatingBarChart";
 
@@ -17,23 +17,27 @@ const ReviewsTable = ({businessId}) => {
     const [reviews, setReviews] = useState([]);
     const [metaData, setMetadata] = useState([]);
     const [avgStars, setAvgStars] = useState([]);
+    const [loading, setLoading] = useState(false); // State to track loading
 
     useEffect(() => {
         const fetchReviews = async () => {
             try {
-                const response = await fetch(`http://localhost:8000/reviews/${businessId}`);
+                setLoading(true);
+                const response = await fetch(`http://api/reviews/${businessId}`);
                 const data = await response.json();
                 setReviews(data);
-                setAvgStars(Math.round(data.reduce((acc, review) => acc + review.stars, 0) / data.length))
-                console.log(avgStars)// Assuming the API returns an array of review objects
+                setAvgStars(Math.round(data.reduce((acc, review) => acc + review.stars, 0) / data.length));
+                console.log(avgStars);
+                setLoading(false);// Assuming the API returns an array of review objects
             } catch (error) {
                 console.error('Error fetching reviews: ', error);
+                setLoading(false);
             }
         };
 
         const fetchMetaData = async () => {
             try {
-                const response = await fetch(`http://localhost:8000/business_id/${businessId}`);
+                const response = await fetch(`http://api/business_id/${businessId}`);
                 const data = await response.json();
                 setMetadata(data); // Assuming the API returns an array of review objects
             } catch (error) {
@@ -65,6 +69,11 @@ const ReviewsTable = ({businessId}) => {
                     marginTop: '0px',
                     boxShadow: '0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12)'
                 }}>
+                    {loading ? (
+                            <Box display="flex" alignItems="center" justifyContent="center">
+                                <CircularProgress />
+                            </Box>
+                    ) : (
                     <div>
                         <Typography variant="h4" style={{flexGrow: 1, display: "flex", justifyContent: "left"}}>
                             {metaData[1]}
@@ -92,7 +101,7 @@ const ReviewsTable = ({businessId}) => {
                         </Typography>
 
                     </div>
-
+                    )}
                 </div>
                 <div style={{
                     backgroundColor: '#ffffff',
@@ -107,14 +116,25 @@ const ReviewsTable = ({businessId}) => {
                     marginTop: '0px',
                     boxShadow: '0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12)'
                 }}>
+                    {loading ? (
+                        <Box display="flex" alignItems="center" justifyContent="center">
+                            <CircularProgress />
+                        </Box>
+                    ) : (
                     <div>
                         <StarRatingBarChart reviews={reviews} />
                     </div>
+                    )}
 
 
                 </div>
             </div>
             <div style={{display: 'flex', justifyContent: 'center'}}>
+                {loading ? (
+                    <Box display="flex" alignItems="center" justifyContent="center">
+                        <CircularProgress />
+                    </Box>
+                ) : (
                 <TableContainer component={Paper}
                                 style={{maxWidth: 'calc(100% - 20px)', margin: '200px', marginTop: '50px'}}>
                     <Table aria-label="reviews table">
@@ -142,6 +162,7 @@ const ReviewsTable = ({businessId}) => {
                         </TableBody>
                     </Table>
                 </TableContainer>
+                    )}
             </div>
         </div>
     );

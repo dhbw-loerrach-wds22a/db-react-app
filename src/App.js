@@ -20,15 +20,19 @@ function App() {
         }
     };
 
+    const handleHomeClick = () => {
+        setCurrentView('businessView'); // Assuming 'businessView' is the home view
+    };
+
     return (
         <div>
             <AppBar position="static" style={{marginTop: 0}}>
                 <Toolbar>
-                    <Typography variant="h6" style={{flexGrow: 1}}>
+                    <Typography variant="h6" style={{flexGrow: 1}} onClick={handleHomeClick}>
                         Yelp Reviews
                     </Typography>
                     <Button color="inherit" onClick={handleTableClick}>
-                        Table
+                        Reviews
                     </Button>
                     <Button color="inherit" onClick={handleAddReviewClick}>
                         Add Review

@@ -44,7 +44,12 @@ const BusinessTable = (props) => {
 
     const fetchData = async () => {
         try {
-            const response = await fetch(`http://localhost/business/${name}`);
+            if (!name) {
+                // If name is empty, reset rows to an empty array or keep the previous data
+                setRows([]);
+                return; // Exit the function early
+            }
+            const response = await fetch(`http://api/business/${name}`);
             const data = await response.json();
             setRows(data); // assuming the API returns an array of arrays
             console.log("Updated Rows: ", rows);
